@@ -277,5 +277,10 @@ reloadPage();
 })
  
   
-    
- 
+const fixContainerPosition=function(){
+  container.style.position="absolute";
+  container.style.marginTop=`${window.innerHeight+1}px`;
+  container.style.opacity=1;
+}
+
+fixContainerPosition();
