@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Learn English spelling by typing...</title>
+  <script  type="module" async defer  src="./extractWord.js"></script>
+<script type="module" async defer src="./classSelected.js"></script>
+
+</head>
+<style>
+
+  *{
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+  }
+
+  html{
+    box-sizing: border-box;
+    font-size: 62.5%;
+  }
+
+  body{
+    position: relative;
+    overflow: hidden;
+    background-color: rgba(193, 201, 201, 0.331);
+    height: 100vh;
+    max-width: 100%;
+    font-family: sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+
+  }
+  /* 618px */
+  .container{
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    position: fixed;
+    margin-top: 61.8rem;  
+    width: 100%;
+    background-color: violet;
+  }
+  .container span{
+    font-size: 24px;
+    color: #666;
+    transition: all 0.1s;
+    border: 1px solid rgba(84, 87, 87, 0.331);
+    padding: 0 5px;
+    border-radius: 12px;
+  }
+  /* .container span:nth-child(1){
+    background-color: blue;
+    position: absolute;
+    margin-top: -2rem;
+  } */
+
+  .button{
+    position: absolute;
+    bottom: 0;
+    margin-left: 50%;
+    padding: 8px 60px;
+    font-size: 34px;
+    transform: translateX(-50%);
+    transition: all 0.3s;
+    cursor: pointer;
+    outline: none;
+    /* transform: translateY(-50%); */
+    margin-bottom: 30px;
+    background-color: rgba(63, 58, 58, 0.69);
+    color: #fff;
+    border-radius: 8px;
+    border: none;
+    box-shadow: 0 10px 10px rgba(0, 10, 10, 0.3);
+  }
+
+  /* .container span:nth-child(1){
+    background-color: brown;
+    position: absolute;
+    left: 0;
+ 
+  } */
+
+  .text_box{
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 50px;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.031);
+    display: flex;
+  }
+  .show_text{
+    font-size: 24px;
+    color: #666;
+    display: inline;
+  }
+  .text_bar{
+    font-size: 24px;
+    color: #666;
+    opacity: 0;
+  }
+
+  .scores{
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+  }
+ 
+  .quit_custom{
+    position: absolute;
+    display: flex;
+    top: 5px;
+    right: 5px;
+    gap: 5px;
+  }
+  
+  .quit_custom .customization,.quit_custom .quit{
+    
+    font-family: sans-serif;
+    line-height: 20px;
+    padding: 0 10px;
+    font-weight: 600;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    background-color: rgba(63, 58, 58, 0.69);
+    color: #fff;
+    border-radius: 6px;
+    border: 0.6px solid #666;
+  }
+  .hide_quit_modal{
+    opacity: 0;
+    pointer-events: none;
+    visibility: hidden;
+  }
+  .show_quit_modal{
+    opacity: 1;
+    pointer-events: auto;
+    visibility: visible;
+  }
+  .quit_modal{
+   position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 60rem;
+    background-color: #f3f3f3;
+    padding: 2rem 4rem;
+    box-shadow: 0 4rem 6rem rgb(0 0 0 / 30%);
+    z-index: 1000;
+    transition: all 0.5s;
+    border-radius: 0.8rem;
+  }
+  .quit_modal_wrap{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+  }
+
+  .close-modal{
+    position: absolute;
+    top: -1.2rem;
+  right: -2rem;
+  font-size: 5rem;
+  color: #333;
+  cursor: pointer;
+  border: none;
+  background: none;
+  
+  }
+
+  .quit_option{
+    /* background-color: aqua; */
+    display: flex;
+    flex-direction: column;
+    margin-left: 55%;
+    transform: translateX(-49%);
+  }
+  .want_to_quit{
+    line-height: 3rem;
+  }
+
+  .yes,.no{
+    font-family: sans-serif;
+    line-height: 2rem;
+    font-weight: 600;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    background-color: rgba(63, 58, 58, 0.69);
+    color: #fff;
+    border-radius: 6px;
+    border: 0.6px solid #666;
+    padding: 0 2.2rem;
+  }
+  .start_again{
+    font-size: 2.4rem;
+    font-family: sans-serif;
+    line-height: 10px;
+    font-weight: 600;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    background-color: rgba(63, 58, 58, 0.69);
+    color: #fff;
+    border-radius: 6px;
+    border: 0.6px solid #666;
+    padding: 1.2rem 2.2rem;
+    margin-left: 50%;
+    transform: translate(-50%,50%);
+  }
+
+  .speed_level_modal{
+    position: fixed;
+    margin-top: 2.7rem;
+    right: 1rem;
+    background-color: #f3f3f3;
+box-shadow: 0 2rem 2rem rgb(0 0 0 0.3);
+padding: 2rem;
+border-radius: 8px;
+z-index: 999;
+transition: all 0.3s;
+  }
+  .speed_level_modal_wrap{
+    z-index: 9999;
+  }
+  .speed_level_modal_wrap::before{
+    content: "";
+    background-color:#f3f3f3;
+    height: 4rem;
+    width: 1.5rem;
+    position: absolute;
+    top: -0.8rem;
+    left: 10rem;
+    transform: rotate(45deg);
+    z-index: -9999;
+  }
+
+  .speed_level_list{
+    list-style: none;
+    line-height: 3rem;
+    font-size: 1.6rem;
+    font-family: sans-serif;
+    letter-spacing: 0.05rem;
+  }
+  .hide_speed_level{
+    opacity: 0;
+    pointer-events: none;
+    visibility: hidden;
+  }
+  .show_speed_level{
+    opacity: 1;
+    pointer-events: auto;
+    visibility: visible;
+  }
+  
+
+  </style>
+<body>
+  <div class="container"> </div>
+
+<div class="scores">
+  <p class="label-score">💯 Score: <span class="score">0</span></p>
+</div>
+
+<div class="text_box">
+  <p class="show_text"></p><span class="text_bar">|</span>
+</div>
+<button class="button" type="click">Start</button>
+
+<div class="quit_custom">
+  <button type="click" class="quit">Quit</button>
+  <button type="click" class="customization">Setting</button>
+</div>
+
+<div class="quit_modal hide_quit_modal">
+<div class="quit_modal_wrap">
+  <button class="close-modal">&times;</button>
+  <div class="score_details">
+    <p class="label-score">💯Current Score: <span class="score_in_quit_modal">0</span></p>
+    <p class="label-highscore">
+      🥇 Highscore: <span class="highscore_in_quit_modal">0</span>
+    </p>
+    <button class="start_again">Start Again</button>
+  </div>
+<hr class="hr_divide_line">
+  <div class="quit_option">
+    <p class="want_to_quit">Are you sure want to quit?</p>
+    <div class="yes_no">
+      <button class="yes">Yes</button>
+      <button class="no">No</button>
+    </div>
+  </div>
+</div>
+
+</div>
+
+<div class="speed_level_modal hide_speed_level">
+  <div class="speed_level_modal_wrap">
+    <p>Choose Level:</p>
+    <ul class="speed_level_list">
+      <li>
+        <input type="radio" id="easy" name="choose_level" checked="checked" value="1300">
+        <label for="easy">Easy</label>
+      </li>
+  <li>
+    <input type="radio" id="medium" name="choose_level" value="1000">
+        <label for="medium">Medium</label>
+  </li>
+  <li>
+    <input type="radio" id="hard" name="choose_level" value="800">
+        <label for="hard">Hard</label>
+  </li>
+    </ul>
+  </div>
+</div>
+
+</body>
+</html>
+
