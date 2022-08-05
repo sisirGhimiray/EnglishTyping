@@ -58,7 +58,7 @@ const moveUpInInterval=function(point=0,ele){
   // ele.style.marginBottom="16px";
   ele.style.position="absolute";
  let intervalId= setInterval(function(){
-   if(Math.abs(parseInt(ele.style.marginTop))>664){
+   if(Math.abs(parseInt(ele.style.marginTop))>window.innerHeight+10){
     ele.style.opacity=0;
     ele.style.marginTop="0px";
     clearInterval(intervalId);
@@ -180,7 +180,7 @@ window.addEventListener("keydown",function(e){
 
   for(const [idx,el] of mainElement.entries()){
    if(el.textContent===t.textContent){
-     if(Math.abs(parseInt(el.style.marginTop))>0&&Math.abs(parseInt(el.style.marginTop)<662)
+     if(Math.abs(parseInt(el.style.marginTop))>(window.innerHeight-window.innerHeight)+10&&Math.abs(parseInt(el.style.marginTop)<window.innerHeight)
      &&checkIndex(idx,indexEnter)==0){
         indexEnter.push(idx);
         el.style.opacity=0;
@@ -279,8 +279,10 @@ reloadPage();
   
 const fixContainerPosition=function(){
   container.style.position="absolute";
-  container.style.marginTop=`${window.innerHeight+1}px`;
+  container.style.marginTop=`${window.innerHeight}px`;
   container.style.opacity=1;
 }
 
 fixContainerPosition();
+
+console.log(window.innerHeight);
