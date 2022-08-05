@@ -11,6 +11,18 @@ fragmentElement.forEach(function(ele,idx){
 
  const mainElement=container.querySelectorAll("*");
 
+ let indexEnter=[];
+let intervalIdContainer=[];
+let eleAttachToIntervalIdContainer=[];
+const checkIndex=function(ind,vector){
+  for(let i=0;i<vector.length;i++){
+    if(ind==vector[i]){
+      return 1;
+    }
+  }
+    return 0;
+}
+
  const removeSetTimeOut=function(){
    timeOutInterValIdContainer.forEach((el)=>{
       clearTimeout(el);
@@ -52,7 +64,7 @@ const barStimulation=function(count){
  const changeStyle=function(ele){
   ele.style.opacity=1;
 }
-const moveUpInInterval=function(point=0,ele){
+const moveUpInInterval=function(point=0,ele,idx){
   let getRandomIndex=Math.trunc(Math.random()*position.length);
   ele.style.marginLeft=`${position[getRandomIndex]}px`;
   // ele.style.marginBottom="16px";
@@ -62,12 +74,16 @@ const moveUpInInterval=function(point=0,ele){
     ele.style.opacity=0;
     ele.style.marginTop="0px";
     clearInterval(intervalId);
-   }
-    point-=0.5;
-    ele.style.marginTop=`${point}px`;
-  },10)
+    eleAttachToIntervalIdContainer.push(ele);
   intervalIdContainer.push(intervalId);
-  eleAttachToIntervalIdContainer.push(ele);
+  indexEnter.push(idx);
+  }
+  point-=0.5;
+  ele.style.marginTop=`${point}px`;
+},10)
+eleAttachToIntervalIdContainer.push(ele);
+  intervalIdContainer.push(intervalId);
+  
 }
 let easyLevel=document.querySelector("#easy");
 let speed=parseInt(easyLevel.value);
@@ -87,7 +103,7 @@ b.addEventListener('click',function(e){
    for(const [idx,el] of mainElement.entries()){
   let timeOutIntervalId=setTimeout(function(){
    changeStyle(el);
-   moveUpInInterval(0,el);
+   moveUpInInterval(0,el,idx);
    },idx*speed)
    timeOutInterValIdContainer.push(timeOutIntervalId);
    }
@@ -126,17 +142,7 @@ customButton.addEventListener("mouseover",function(e){
   chooseLevel.addEventListener("mouseover",showLevelModal);
 });
 customButton.addEventListener("mouseout",removeLevelModal);
-let indexEnter=[];
-let intervalIdContainer=[];
-let eleAttachToIntervalIdContainer=[];
-const checkIndex=function(ind,vector){
-  for(let i=0;i<vector.length;i++){
-    if(ind==vector[i]){
-      return 1;
-    }
-  }
-    return 0;
-}
+
 let scoreBoard={
   score:0,
   highScore:0,
@@ -180,7 +186,7 @@ window.addEventListener("keydown",function(e){
 
   for(const [idx,el] of mainElement.entries()){
    if(el.textContent===t.textContent){
-     if(Math.abs(parseInt(el.style.marginTop))>(window.innerHeight-window.innerHeight)+10&&Math.abs(parseInt(el.style.marginTop)<window.innerHeight)
+     if(Math.abs(parseInt(el.style.marginTop))>=(window.innerHeight-window.innerHeight)+10&&Math.abs(parseInt(el.style.marginTop)<=window.innerHeight)
      &&checkIndex(idx,indexEnter)==0){
         indexEnter.push(idx);
         el.style.opacity=0;
