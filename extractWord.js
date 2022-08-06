@@ -106,6 +106,11 @@ b.addEventListener('click',function(e){
    moveUpInInterval(0,el,idx);
    },idx*speed)
    timeOutInterValIdContainer.push(timeOutIntervalId);
+   speedMeter.forEach(function(el){
+    el.addEventListener("change",function(e){
+        speed=parseInt(el.value);
+    })
+  })
    }
 
 })
