@@ -329,3 +329,11 @@ const fixContainerPosition=function(){
 
 fixContainerPosition();
 
+const wrpUpAll=document.querySelector(".wrp_up");
+
+
+
+window.addEventListener("change",function(e){
+  wrpUpAll.style.height=`${window.innerHeight}px`;
+  
+})

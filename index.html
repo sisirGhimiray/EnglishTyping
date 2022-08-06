@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta content="width=device-width, initial-scale=1" name="viewport" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <style>
     *{
@@ -28,94 +28,61 @@ body{
 
 .hero{
   max-width: 130rem;
-display: grid;
-grid-template-columns: 1fr 1fr;
-justify-items: center;
-margin: 0 auto;
-margin-top: 1.8rem;
+ display: flex;
+justify-content: space-evenly;
+margin-bottom: 2.8rem;
 }
 
-@media(max-width:50em){
 
-  .hero{
-    
-    grid-template-columns: 1fr;
-    justify-content: center;
-    justify-items: center;
-  }
-  .hero_img_div{
-   grid-row: 1/2;
-   padding-left: 4rem;
-  }
-  .hero_heading{
-  font-size: 2rem;
-  margin-top: 1.8rem;
-  background-color: black;
-  }
-  .go_to_start{
-    margin-top: 0;
-  }
-
-  .story_bullet{
-  font-family: sans-serif;
-  font-size: 1.6rem;
-  margin-top: 1.4rem;
-  margin-bottom: 1.4rem;
-  }
-
-}
 
 
 .hero_img{
-width: 80%;
+width: 100%;
 height: 100%;
-/* border: 1px solid rgba(181, 170, 170, 0.22);
-border-right: none;
-border-radius: 2rem; */
+
 }
 
 .hero_story{
-/* background-color: rgb(142, 87, 15); */
-height: 30rem;
-padding-left: 4rem;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: flex-start;
+row-gap: 3rem;
+flex-basis: 70rem;
+
 }
 .hero_page{
-  padding: 2rem 1rem;
+padding: 0 1.6rem;
 }
 .hero_heading{
   font-size: 4.4rem;
-  margin-top: 9.6rem;
-  color: #666;
+  color: #777;
   font-weight: 700;
   font-family: sans-serif;
 }
 
 .story_bullet{
   font-family: sans-serif;
-  font-size: 2.4rem;
-  margin-top: 2.8rem;
+  font-size: 2.2rem;
   letter-spacing: 0.06rem;
   font-weight: 500;
-  color: #555;
-  margin-bottom: 4.8rem;
-  line-height: 3.6rem;
+  color: #777;
 }
 .story_line{
   line-height: 3.2rem;
 }
 
 .go_to_start{
- padding: 2rem 3.2rem;
+  font-family: sans-serif;
  cursor: pointer;
  text-decoration: none;
  background-color: blueviolet;
  color: #fff;
  font-weight: 700;
- font-size: 2.4rem;
- margin-top: 3.2rem;
+ font-size: 2rem;
  border-radius: 1.2rem;
  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
- margin-left: 5rem;
+ padding: 1.6rem 3.2rem;
  
 }
 
@@ -134,13 +101,9 @@ padding-left: 4rem;
   font-size: 2.8rem;
 }
 .footer{
- 
-  text-align: center;
-  height: 1.2rem;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 1.2rem 0;
   font-size: 1.8rem;
 }
 .go_to_start:link,
@@ -157,8 +120,13 @@ padding-left: 4rem;
   background-color: rgb(96, 11, 175);
 }
 
+.hero_img_div{
+  display: flex;
+}
+
 
   </style>
+  <link rel="stylesheet" href="./querries.css">
 </head>
 
 <body>
@@ -168,7 +136,7 @@ padding-left: 4rem;
   <section class="hero_page">
     <div class="hero">
       <div class="hero_story">
-      <h1 class="hero_heading">Make Your Typing 10 X Faster By Playing WordUp.</h1>
+      <h1 class="hero_heading">Make Your Typing 10X Faster By Playing WordUp.</h1>
       
       <p class="story_bullet">
         Type English words to not forget spelling of common words, check your pottential by typing correct gramar fast as possible to score high in this game.

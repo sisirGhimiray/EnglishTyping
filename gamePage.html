@@ -306,68 +306,77 @@ transition: all 0.3s;
   opacity: 0;
   visibility: hidden;
 }
+
+.wrp_up{
+  display: flex;
+}
   
 
   </style>
 <body>
-  <div class="container"> </div>
+  <div class="wrp_up">
 
-<div class="scores">
-  <p class="label-score">💯 Score: <span class="score">0</span></p>
-</div>
-
-<div class="text_box">
-  <p class="show_text"></p><span class="text_bar">|</span>
-</div>
-<button class="button" type="click">Start</button>
-
-<div class="quit_custom">
-  <button type="click" class="quit">Quit</button>
-  <button type="click" class="customization">Setting</button>
-</div>
-
-<div class="quit_modal hide_quit_modal">
-<div class="quit_modal_wrap">
-  <button class="close-modal">&times;</button>
-  <div class="score_details">
-    <p class="label-score">💯Current Score: <span class="score_in_quit_modal">0</span></p>
-    <p class="label-highscore">
-      🥇 Highscore: <span class="highscore_in_quit_modal">0</span>
-    </p>
-    <button class="start_again">Start Again</button>
-  </div>
-<hr class="hr_divide_line">
-  <div class="quit_option">
-    <p class="want_to_quit">Are you sure want to quit?</p>
-    <div class="yes_no">
-      <button class="yes">Yes</button>
-      <button class="no">No</button>
+    <div class="wrp">
+      <div class="container"> </div>
+    
+    <div class="scores">
+      <p class="label-score">💯 Score: <span class="score">0</span></p>
+    </div>
+    
+    <div class="text_box">
+      <p class="show_text"></p><span class="text_bar">|</span>
+    </div>
+    <button class="button" type="click">Start</button>
+    
+    <div class="quit_custom">
+      <button type="click" class="quit">Quit</button>
+      <button type="click" class="customization">Setting</button>
+    </div>
+    
+    <div class="quit_modal hide_quit_modal">
+    <div class="quit_modal_wrap">
+      <button class="close-modal">&times;</button>
+      <div class="score_details">
+        <p class="label-score">💯Current Score: <span class="score_in_quit_modal">0</span></p>
+        <p class="label-highscore">
+          🥇 Highscore: <span class="highscore_in_quit_modal">0</span>
+        </p>
+        <button class="start_again">Start Again</button>
+      </div>
+    <hr class="hr_divide_line">
+      <div class="quit_option">
+        <p class="want_to_quit">Are you sure want to quit?</p>
+        <div class="yes_no">
+          <button class="yes">Yes</button>
+          <button class="no">No</button>
+        </div>
+      </div>
+    </div>
+    
+    </div>
+    
+    <div class="speed_level_modal hide_speed_level">
+      <div class="speed_level_modal_wrap">
+        <p>Choose Level:</p>
+        <ul class="speed_level_list">
+          <li>
+            <input type="radio" id="easy" name="choose_level" checked="checked" value="1300">
+            <label for="easy">Easy</label>
+          </li>
+      <li>
+        <input type="radio" id="medium" name="choose_level" value="1000">
+            <label for="medium">Medium</label>
+      </li>
+      <li>
+        <input type="radio" id="hard" name="choose_level" value="800">
+            <label for="hard">Hard</label>
+      </li>
+        </ul>
+      </div>
+    </div>
+    <div class="overlay luka"></div>
     </div>
   </div>
-</div>
-
-</div>
-
-<div class="speed_level_modal hide_speed_level">
-  <div class="speed_level_modal_wrap">
-    <p>Choose Level:</p>
-    <ul class="speed_level_list">
-      <li>
-        <input type="radio" id="easy" name="choose_level" checked="checked" value="1300">
-        <label for="easy">Easy</label>
-      </li>
-  <li>
-    <input type="radio" id="medium" name="choose_level" value="1000">
-        <label for="medium">Medium</label>
-  </li>
-  <li>
-    <input type="radio" id="hard" name="choose_level" value="800">
-        <label for="hard">Hard</label>
-  </li>
-    </ul>
-  </div>
-</div>
-<div class="overlay luka"></div>
 </body>
 </html>
 

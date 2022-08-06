@@ -1,0 +1,22 @@
+@media(max-width:50em){
+  .hero{
+    flex-direction: column;
+    row-gap: 1.6rem;
+  }
+
+  .hero_heading{
+    font-size: 2rem;
+  }
+  .story_bullet{
+    font-size: 1.4rem;
+  }
+
+  .go_to_start{
+    font-size: 1.6rem;
+    padding: 0.6rem 1.2rem;
+  }
+
+  .footer{
+    font-size: 1.4rem;
+  }
+}
