@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta content="width=device-width, initial-scale=1" name="viewport" />
   <title>Document</title>
   <style>
     *{
@@ -23,7 +23,7 @@
   box-shadow: 0 0 0 0.8rem rgba(230, 125, 34, 0.5);
 }
 body{
-overflow-y: scroll;
+
 }
 
 .hero{
@@ -34,6 +34,38 @@ justify-items: center;
 margin: 0 auto;
 margin-top: 1.8rem;
 }
+
+@media(max-width:50em){
+
+  .hero{
+    
+    grid-template-columns: 1fr;
+    justify-content: center;
+    justify-items: center;
+  }
+  .hero_img_div{
+   grid-row: 1/2;
+   padding-left: 4rem;
+  }
+  .hero_heading{
+  font-size: 2rem;
+  margin-top: 1.8rem;
+  background-color: black;
+  }
+  .go_to_start{
+    margin-top: 0;
+  }
+
+  .story_bullet{
+  font-family: sans-serif;
+  font-size: 1.6rem;
+  margin-top: 1.4rem;
+  margin-bottom: 1.4rem;
+  }
+
+}
+
+
 .hero_img{
 width: 80%;
 height: 100%;
@@ -102,6 +134,8 @@ padding-left: 4rem;
   font-size: 2.8rem;
 }
 .footer{
+ 
+  text-align: center;
   height: 1.2rem;
   display: flex;
   justify-content: center;
