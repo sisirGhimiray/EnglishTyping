@@ -16,7 +16,12 @@
       font-size: 62.5%;
     
     }
-
+    *:focus {
+  outline: none;
+  /* outline: 4px dotted #e67e22; */
+  /* outline-offset: 8px; */
+  box-shadow: 0 0 0 0.8rem rgba(230, 125, 34, 0.5);
+}
 body{
 overflow-y: scroll;
 }
@@ -49,7 +54,8 @@ padding-left: 4rem;
   font-size: 4.4rem;
   margin-top: 9.6rem;
   color: #666;
-
+  font-weight: 700;
+  font-family: sans-serif;
 }
 
 .story_bullet{
@@ -103,6 +109,21 @@ padding-left: 4rem;
   padding: 1.2rem 0;
   font-size: 1.8rem;
 }
+.go_to_start:link,
+.go_to_start:visited {
+  display: inline-block;
+  text-decoration: none;
+  /* border-bottom: 1px solid currentColor; */
+  transition: all 0.3s;
+}
+
+.go_to_start:hover,
+.go_to_start:active {
+  border-bottom: 1px solid transparent;
+  background-color: rgb(96, 11, 175);
+}
+
+
   </style>
 </head>
 
@@ -132,11 +153,17 @@ padding-left: 4rem;
 
 
 <footer class="footer">
-  Copyright &copy; made with ❤️ Sisir Ghimiray.
+  <p class="copyright"> Copyright &copy;<span class="year">1998 </span>  made with ❤️ Sisir Ghimiray.</p>
+ 
 </footer>
 
   <script>
 document.querySelector(".hero").style.height=`${window.innerHeight}px`;
+
+const footerYear=document.querySelector(".year");
+const date=new Date();
+footerYear.textContent=date.getFullYear();
+
   </script>
 
 </body>

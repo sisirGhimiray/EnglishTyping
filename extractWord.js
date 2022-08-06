@@ -112,6 +112,36 @@ b.addEventListener('click',function(e){
     })
   })
    }
+   window.addEventListener("keydown",function(e){
+    e.preventDefault();
+     if(e.key==="Backspace"){
+       backSpace();
+     }
+     
+     if(e.key.length==1){
+      console.log(e.key);
+      t.textContent+=e.key;
+     }
+   
+     for(const [idx,el] of mainElement.entries()){
+      if(el.textContent===t.textContent){
+        if(Math.abs(parseInt(el.style.marginTop))>=(window.innerHeight-window.innerHeight)+10&&Math.abs(parseInt(el.style.marginTop)<=window.innerHeight)
+        &&checkIndex(idx,indexEnter)==0){
+           indexEnter.push(idx);
+           el.style.opacity=0;
+           el.style.marginTop="0px";
+           t.textContent="";
+           scoreBoard.score+=1;
+           score.textContent=scoreBoard.score;
+           if(scoreBoard.score>scoreBoard.highScore){
+             scoreBoard.highScore=scoreBoard.score;
+           }
+      
+         }
+       }
+     }
+     
+   })
 
 })
 
@@ -131,7 +161,7 @@ const startAgain=document.querySelector(".start_again");
 const customButton=document.querySelector(".customization");
 const chooseLevel=document.querySelector(".speed_level_modal");
 const yesToQuit=document.querySelector(".yes");
-
+const overlay=document.querySelector(".overlay");
 const showLevelModal=function(){
   chooseLevel.classList.remove("hide_speed_level");
   chooseLevel.classList.add("show_speed_level");
@@ -178,36 +208,36 @@ const backSpace=function(){
 // Writing on the text Box;
 // character for text box;
 
-window.addEventListener("keydown",function(e){
- e.preventDefault();
-  if(e.key==="Backspace"){
-    backSpace();
-  }
+// window.addEventListener("keydown",function(e){
+//  e.preventDefault();
+//   if(e.key==="Backspace"){
+//     backSpace();
+//   }
   
-  if(e.key.length==1){
-   console.log(e.key);
-   t.textContent+=e.key;
-  }
+//   if(e.key.length==1){
+//    console.log(e.key);
+//    t.textContent+=e.key;
+//   }
 
-  for(const [idx,el] of mainElement.entries()){
-   if(el.textContent===t.textContent){
-     if(Math.abs(parseInt(el.style.marginTop))>=(window.innerHeight-window.innerHeight)+10&&Math.abs(parseInt(el.style.marginTop)<=window.innerHeight)
-     &&checkIndex(idx,indexEnter)==0){
-        indexEnter.push(idx);
-        el.style.opacity=0;
-        el.style.marginTop="0px";
-        t.textContent="";
-        scoreBoard.score+=1;
-        score.textContent=scoreBoard.score;
-        if(scoreBoard.score>scoreBoard.highScore){
-          scoreBoard.highScore=scoreBoard.score;
-        }
+//   for(const [idx,el] of mainElement.entries()){
+//    if(el.textContent===t.textContent){
+//      if(Math.abs(parseInt(el.style.marginTop))>=(window.innerHeight-window.innerHeight)+10&&Math.abs(parseInt(el.style.marginTop)<=window.innerHeight)
+//      &&checkIndex(idx,indexEnter)==0){
+//         indexEnter.push(idx);
+//         el.style.opacity=0;
+//         el.style.marginTop="0px";
+//         t.textContent="";
+//         scoreBoard.score+=1;
+//         score.textContent=scoreBoard.score;
+//         if(scoreBoard.score>scoreBoard.highScore){
+//           scoreBoard.highScore=scoreBoard.score;
+//         }
    
-      }
-    }
-  }
+//       }
+//     }
+//   }
   
-})
+// })
 
 
 
@@ -246,11 +276,13 @@ const showQuitModal=function(){
    quitModal.classList.add("show_quit_modal");
    scoreInQuitModal.textContent=scoreBoard.score;
    highScoreInQuitModal.textContent=scoreBoard.highScore;
+   overlay.classList.toggle("luka");
 }
 const removeQuitModal=function(){
    quitModal.classList.remove("show_quit_modal");
    quitModal.classList.add("hide_quit_modal");
    scoreInQuitModal.textContent=0;
+   overlay.classList.toggle("luka");
 }
 const reloadPage=function(){
   document.querySelector(".show_text").textContent="";
@@ -285,6 +317,7 @@ reloadPage();
 yesToQuit.addEventListener("click",function(e){
 e.preventDefault();
 reloadPage();
+window.location.replace("./index.html");
 })
  
   
@@ -296,4 +329,3 @@ const fixContainerPosition=function(){
 
 fixContainerPosition();
 
-console.log(window.innerHeight);
