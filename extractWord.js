@@ -4,6 +4,9 @@ let timeOutInterValIdContainer=[];
 let barStimulationIntervalIdContainer=[];
 const eleFragment=document.createRange().createContextualFragment(spanEle);
 const fragmentElement=eleFragment.querySelectorAll("*");
+let t=document.querySelector(".show_text");
+// t.textContent="";
+let givePermissionToWrite=0;
 fragmentElement.forEach(function(ele,idx){
    container.insertAdjacentElement("beforeend",ele);
 })
@@ -116,6 +119,7 @@ speedMeter.forEach(function(el){
 
 
 b.addEventListener('click',function(e){
+  givePermissionToWrite=1;
    b.style.opacity=0;
    barStimulation(0);
    e.preventDefault();
@@ -131,40 +135,54 @@ b.addEventListener('click',function(e){
     })
   })
    }
-   window.addEventListener("keydown",function(e){
-    e.preventDefault();
-     if(e.key==="Backspace"){
-       backSpace();
-     }
-     
-     if(e.key.length==1){
-      console.log(e.key);
-      t.textContent+=e.key;
-     }
-   
-     for(const [idx,el] of mainElement.entries()){
-      if(el.textContent===t.textContent){
-        if(Math.abs(parseInt(el.style.marginTop))>=(window.innerHeight-window.innerHeight)+10&&Math.abs(parseInt(el.style.marginTop)<=window.innerHeight)
-        &&checkIndex(idx,indexEnter)==0){
-           indexEnter.push(idx);
-           el.style.opacity=0;
-           el.style.marginTop="0px";
-           t.textContent="";
-           scoreBoard.score+=1;
-           score.textContent=scoreBoard.score;
-           let highScoreInLocalStorage=localStorage.getItem("highScore");
-           if(scoreBoard.score>scoreBoard.highScore){
-             scoreBoard.highScore=scoreBoard.score;
-             localStorage.setItem("highScore",scoreBoard.score);
-           }
-      
-         }
-       }
-     }
-     
-   })
 
-})
+  })
+
+
+
+
+
+    window.addEventListener("keydown",function(e){
+      if(e.key==="Backspace"){
+        backSpace();
+      }
+      
+      if(e.key.length==1){
+       let str=[];
+       str.push(e.key);
+       str.forEach(function(el){
+         t.textContent+=el;
+       })
+      }
+    
+      for(const [idx,el] of mainElement.entries()){
+       if(el.textContent===t.textContent){
+         if(Math.abs(parseInt(el.style.marginTop))>=(window.innerHeight-window.innerHeight)+10&&Math.abs(parseInt(el.style.marginTop)<=window.innerHeight)
+         &&checkIndex(idx,indexEnter)==0){
+            indexEnter.push(idx);
+            el.style.opacity=0;
+            el.style.marginTop="0px";
+            t.textContent="";
+            scoreBoard.score+=1;
+            score.textContent=scoreBoard.score;
+            if(scoreBoard.score>scoreBoard.highScore){
+              scoreBoard.highScore=scoreBoard.score;
+              localStorage.setItem("highScore",scoreBoard.score);
+            }
+       
+          }
+        }
+      }
+      
+    })
+ 
+
+
+
+
+
+  
+
 
 
 
@@ -202,8 +220,7 @@ customButton.addEventListener("mouseout",removeLevelModal);
 
 
 
-let t=document.querySelector(".show_text");
-t.textContent="";
+
 
 const backSpace=function(){
   let str=[],i=0;
@@ -322,10 +339,7 @@ const reloadPage=function(){
 openQuitModal.addEventListener("click",showQuitModal);
 closeQuitModal.addEventListener("click",removeQuitModal);
 noToQuitModal.addEventListener("click",removeQuitModal);
-startAgain.addEventListener("click",function(e){
-e.preventDefault();
-reloadPage();
-});
+startAgain.addEventListener("click",reloadPage);
 
 yesToQuit.addEventListener("click",function(e){
 e.preventDefault();
@@ -336,7 +350,7 @@ window.location.replace("./index.html");
   
 const fixContainerPosition=function(){
   container.style.position="absolute";
-  container.style.marginTop=`${window.innerHeight}px`;
+  container.style.marginTop=`${window.innerHeight+1}px`;
   container.style.opacity=1;
 }
 
