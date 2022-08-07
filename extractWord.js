@@ -6,13 +6,32 @@ const eleFragment=document.createRange().createContextualFragment(spanEle);
 const fragmentElement=eleFragment.querySelectorAll("*");
 fragmentElement.forEach(function(ele,idx){
    container.insertAdjacentElement("beforeend",ele);
-
 })
 
  const mainElement=container.querySelectorAll("*");
-
  let indexEnter=[];
 let intervalIdContainer=[];
+let scoreBoard={
+  score:0,
+  highScore:0,
+}
+
+let position=[];
+for(let i=(36*4);i<window.innerWidth-(36*4);i+=36){
+  position.push(i);
+}
+
+window.addEventListener("change",function(e){
+  let p=0;
+  for(;p<position.length;p++){
+    position.pop();
+  }
+  for(let i=(20*4);i<window.innerWidth-(20*4);i+=20){
+    position.push(i);
+  }
+})
+
+
 let eleAttachToIntervalIdContainer=[];
 const checkIndex=function(ind,vector){
   for(let i=0;i<vector.length;i++){
@@ -133,8 +152,10 @@ b.addEventListener('click',function(e){
            t.textContent="";
            scoreBoard.score+=1;
            score.textContent=scoreBoard.score;
+           let highScoreInLocalStorage=localStorage.getItem("highScore");
            if(scoreBoard.score>scoreBoard.highScore){
              scoreBoard.highScore=scoreBoard.score;
+             localStorage.setItem("highScore",scoreBoard.score);
            }
       
          }
@@ -178,15 +199,7 @@ customButton.addEventListener("mouseover",function(e){
 });
 customButton.addEventListener("mouseout",removeLevelModal);
 
-let scoreBoard={
-  score:0,
-  highScore:0,
-}
 
-let position=[];
-for(let i=144;i<1150;i+=36){
-  position.push(i);
-}
 
 
 let t=document.querySelector(".show_text");
@@ -275,7 +288,7 @@ const showQuitModal=function(){
    quitModal.classList.remove("hide_quit_modal");
    quitModal.classList.add("show_quit_modal");
    scoreInQuitModal.textContent=scoreBoard.score;
-   highScoreInQuitModal.textContent=scoreBoard.highScore;
+   highScoreInQuitModal.textContent=localStorage.getItem("highScore");
    overlay.classList.toggle("luka");
 }
 const removeQuitModal=function(){
@@ -337,3 +350,5 @@ window.addEventListener("change",function(e){
   wrpUpAll.style.height=`${window.innerHeight}px`;
   
 })
+
+
